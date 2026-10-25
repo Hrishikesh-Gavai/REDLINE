@@ -4,12 +4,7 @@
 
 <br/><br/>
 
-### Turn any clip into a beat-synced slide into cyberpsychosis.
-
-Time slows on the drop. Neon ghosts trail everything that moves.<br/>
-A tracking HUD locks on. Then reality snaps back.
-
-<sub>PURE PYTHON &nbsp;·&nbsp; RUNS LOCALLY &nbsp;·&nbsp; NO AFTER EFFECTS</sub>
+PURE PYTHON &nbsp;·&nbsp; RUNS LOCALLY &nbsp;·&nbsp; NO AFTER EFFECTS
 
 </div>
 
@@ -17,11 +12,11 @@ A tracking HUD locks on. Then reality snaps back.
 
 <img src="assets/divider.svg" width="100%"/>
 
-## `BEFORE`
+## `>> BEFORE`
 
 <img src="assets/demo/before.gif" width="100%" alt="original clip"/>
 
-## `AFTER` &nbsp;<sub>// REDLINE ENGAGED</sub>
+## `>> AFTER` &nbsp;<sub>// REDLINE ENGAGED</sub>
 
 <img src="assets/demo/after.gif" width="100%" alt="clip after REDLINE"/>
 
@@ -29,7 +24,7 @@ A tracking HUD locks on. Then reality snaps back.
 
 <img src="assets/divider.svg" width="100%"/>
 
-## `WHAT IT DOES`
+## `>> WHAT IT DOES`
 
 | | |
 |---|---|
@@ -46,7 +41,7 @@ All of it is timed to the music. Beats are detected automatically from the clip'
 
 <img src="assets/divider.svg" width="100%"/>
 
-## `SETUP`
+## `>> SETUP`
 
 ```bash
 git clone https://github.com/Hrishikesh-Gavai/REDLINE.git
@@ -64,7 +59,7 @@ pip install -r requirements.txt
 
 <br/>
 
-## `RUN`
+## `>> RUN`
 
 ```bash
 python main.py input/clip.mp4
@@ -80,7 +75,7 @@ python make_test_clip.py                                   # no footage? make a 
 
 <br/>
 
-## `TWEAK`
+## `>> TWEAK`
 
 Change any setting in `config.yaml`, or straight from the command line:
 
@@ -109,7 +104,7 @@ Change any setting in `config.yaml`, or straight from the command line:
 
 <img src="assets/divider.svg" width="100%"/>
 
-## `PROJECT`
+## `>> PROJECT`
 
 ```
 REDLINE/
@@ -135,7 +130,7 @@ REDLINE/
 
 <br/>
 
-## `ADD YOUR OWN EFFECT`
+## `>> ADD YOUR OWN EFFECT`
 
 ```python
 # src/effects.py
@@ -157,7 +152,7 @@ Then add it to the `effects:` list in `config.yaml`:
 
 <br/>
 
-## `MAKE THE DEMO GIFS`
+## `>> MAKE THE DEMO GIFS`
 
 ```bash
 python main.py input/clip.mp4

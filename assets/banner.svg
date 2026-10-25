@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360">
+  <!-- palette: #000000 · #FFFFFF · #FF3D7F — nothing else -->
+  <defs>
+    <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="3" height="3" fill="#FF3D7F"/>
+    </pattern>
+    <pattern id="hazard" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="24" fill="#FF3D7F"/>
+    </pattern>
+    <clipPath id="titleClip"><rect x="140" y="96" width="820" height="150"/></clipPath>
+    <style>
+      .title { font: 900 138px 'Arial Black', 'Helvetica Neue', Impact, sans-serif; letter-spacing: -4px; }
+      .mono  { font: 700 13px 'Courier New', ui-monospace, monospace; letter-spacing: 3px; }
+      .monoS { font: 700 11px 'Courier New', ui-monospace, monospace; letter-spacing: 2px; }
+      .label { font: 900 19px 'Courier New', ui-monospace, monospace; letter-spacing: 4px; }
+      .vert  { font: 900 17px 'Arial Black', 'Helvetica Neue', Impact, sans-serif; letter-spacing: 7px; }
+      .idx   { font: 900 64px 'Arial Black', 'Helvetica Neue', Impact, sans-serif; }
+
+      .ghost  { animation: ghost 2.8s steps(1) infinite; }
+      .slice1 { animation: s1 2.8s steps(1) infinite; }
+      .slice2 { animation: s2 2.8s steps(1) infinite; }
+      .target { animation: tgt 4.2s steps(1) infinite; }
+      .blink  { animation: blink 1s steps(1) infinite; }
+      .sweep  { animation: sweep 3.2s linear infinite; }
+      .meter  { animation: meter 2.4s steps(12) infinite; transform-origin: 140px 0; }
+      .flash  { animation: flash 2.8s steps(1) infinite; }
+
+      @keyframes ghost { 0%{transform:translate(7px,0)} 38%{transform:translate(18px,-3px)} 41%{transform:translate(7px,0)} 72%{transform:translate(-10px,2px)} 74%{transform:translate(7px,0)} }
+      @keyframes s1 { 0%,100%{opacity:0} 38%{opacity:1;transform:translateX(26px)} 41%{opacity:0} }
+      @keyframes s2 { 0%,100%{opacity:0} 72%{opacity:1;transform:translateX(-34px)} 75%{opacity:0} }
+      @keyframes tgt { 0%{transform:translate(0,0)} 25%{transform:translate(-38px,22px)} 50%{transform:translate(14px,40px)} 75%{transform:translate(30px,6px)} }
+      @keyframes blink { 0%{opacity:1} 50%{opacity:0} }
+      @keyframes sweep { 0%{transform:translateY(0)} 100%{transform:translateY(360px)} }
+      @keyframes meter { 0%{transform:scaleX(0.08)} 100%{transform:scaleX(1)} }
+      @keyframes flash { 0%,100%{opacity:0} 38%{opacity:1} 39.5%{opacity:0} }
+    </style>
+  </defs>
+
+  <!-- base -->
+  <rect width="1200" height="360" fill="#000000"/>
+
+  <!-- left rail: solid pink spine with vertical type -->
+  <rect x="0" y="0" width="86" height="360" fill="#FF3D7F"/>
+  <text class="vert" fill="#000000" transform="translate(50 336) rotate(-90)">NEURAL OVERDRIVE</text>
+  <rect x="86" y="0" width="4" height="360" fill="#FFFFFF"/>
+
+  <!-- top bar -->
+  <rect x="90" y="44" width="1110" height="2" fill="#FFFFFF"/>
+  <text x="140" y="30" class="mono" fill="#FFFFFF">REDLINE</text>
+  <text x="300" y="30" class="mono" fill="#FF3D7F">// BUILD 26.10</text>
+  <text x="960" y="30" class="mono" fill="#FFFFFF" text-anchor="end">SYS.STATE</text>
+  <text x="1176" y="30" class="mono blink" fill="#FF3D7F" text-anchor="end">■ OVERCLOCKED</text>
+
+  <!-- dot matrix field, top right -->
+  <rect x="980" y="62" width="196" height="98" fill="url(#dots)"/>
+
+  <!-- index number -->
+  <text x="1176" y="232" class="idx" fill="#FFFFFF" text-anchor="end">01</text>
+  <rect x="1078" y="244" width="98" height="6" fill="#FF3D7F"/>
+
+  <!-- TITLE: pink ghost behind, white on top, glitch slices -->
+  <g clip-path="url(#titleClip)">
+    <text x="140" y="226" class="title ghost" fill="#FF3D7F">REDLINE</text>
+    <text x="140" y="226" class="title" fill="#FFFFFF">REDLINE</text>
+    <!-- displaced slices (copy of title shifted, revealed in thin bands) -->
+    <g class="slice1" opacity="0">
+      <rect x="140" y="148" width="820" height="16" fill="#000000"/>
+      <rect x="140" y="152" width="820" height="7" fill="#FF3D7F"/>
+    </g>
+    <g class="slice2" opacity="0">
+      <rect x="140" y="196" width="820" height="12" fill="#000000"/>
+      <rect x="140" y="199" width="820" height="5" fill="#FFFFFF"/>
+    </g>
+  </g>
+
+  <!-- subtitle: inverted pink label -->
+  <rect x="140" y="262" width="514" height="34" fill="#FF3D7F"/>
+  <text x="156" y="286" class="label" fill="#000000">BEAT-SYNCED CYBERPSYCHOSIS FX</text>
+  <rect x="660" y="262" width="34" height="34" fill="#FFFFFF"/>
+  <path d="M669 271 L685 279 L669 287 Z" fill="#000000"/>
+
+  <!-- tracking target, right-middle -->
+  <g class="target">
+    <rect x="850" y="76" width="22" height="22" fill="#FF3D7F"/>
+    <g fill="none" stroke="#FFFFFF" stroke-width="2">
+      <path d="M836 62h12M836 62v12M886 62h-12M886 62v12M836 112h12M836 112v-12M886 112h-12M886 112v-12"/>
+      <path d="M861 54v12M861 108v12M828 87h12M882 87h12"/>
+    </g>
+    <text x="894" y="66" class="monoS" fill="#FFFFFF">TGT 0417</text>
+    <text x="894" y="80" class="monoS" fill="#FF3D7F">0.93</text>
+  </g>
+
+  <!-- hazard block -->
+  <rect x="724" y="262" width="180" height="34" fill="url(#hazard)"/>
+  <rect x="724" y="262" width="180" height="34" fill="none" stroke="#FF3D7F" stroke-width="2"/>
+
+  <!-- bottom: dilation meter -->
+  <text x="140" y="330" class="mono" fill="#FFFFFF">T-DILATION</text>
+  <text x="300" y="330" class="mono" fill="#FF3D7F">x0.30</text>
+  <rect x="140" y="338" width="240" height="8" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <rect class="meter" x="140" y="338" width="240" height="8" fill="#FF3D7F"/>
+
+  <!-- bottom: readouts -->
+  <text x="430" y="330" class="monoS" fill="#FFFFFF">FRM 01337</text>
+  <text x="430" y="346" class="monoS" fill="#FFFFFF">TC 00:22:17</text>
+  <text x="590" y="330" class="monoS" fill="#FFFFFF">SIG ||||||||..</text>
+  <text x="590" y="346" class="monoS blink" fill="#FF3D7F">// SYNC LOCKED</text>
+
+  <!-- barcode -->
+  <g fill="#FFFFFF">
+    <rect x="940" y="314" width="3" height="32"/><rect x="946" y="314" width="1" height="32"/>
+    <rect x="950" y="314" width="5" height="32"/><rect x="958" y="314" width="2" height="32"/>
+    <rect x="963" y="314" width="1" height="32"/><rect x="967" y="314" width="4" height="32"/>
+    <rect x="974" y="314" width="2" height="32"/><rect x="979" y="314" width="6" height="32"/>
+    <rect x="988" y="314" width="1" height="32"/><rect x="992" y="314" width="3" height="32"/>
+    <rect x="998" y="314" width="2" height="32"/><rect x="1003" y="314" width="5" height="32"/>
+    <rect x="1011" y="314" width="1" height="32"/><rect x="1015" y="314" width="3" height="32"/>
+    <rect x="1021" y="314" width="2" height="32"/><rect x="1026" y="314" width="1" height="32"/>
+    <rect x="1030" y="314" width="4" height="32"/><rect x="1037" y="314" width="2" height="32"/>
+  </g>
+  <text x="1176" y="346" class="monoS" fill="#FF3D7F" text-anchor="end">RL-2026</text>
+
+  <!-- corner ticks -->
+  <g fill="#FFFFFF">
+    <rect x="1170" y="56" width="6" height="2"/><rect x="1174" y="56" width="2" height="6"/>
+    <rect x="1170" y="300" width="6" height="2"/><rect x="1174" y="296" width="2" height="6"/>
+  </g>
+
+  <!-- scan sweep line -->
+  <rect class="sweep" x="90" y="0" width="1110" height="1" fill="#FFFFFF"/>
+
+  <!-- full-frame pink flash on the big glitch hit -->
+  <rect class="flash" opacity="0" x="90" y="0" width="1110" height="360" fill="#FF3D7F"/>
+  <text class="flash title" opacity="0" x="140" y="226" fill="#000000">REDLINE</text>
+</svg>

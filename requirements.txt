@@ -1,0 +1,9 @@
+opencv-python>=4.8
+numpy>=1.24
+PyYAML>=6.0
+imageio-ffmpeg>=0.4  # bundled ffmpeg binary, no PATH setup needed
+librosa>=0.10        # beat detection (falls back to a basic detector if missing)
+Pillow>=10.0         # only needed for custom .ttf pixel fonts
+
+# optional — real object/person boxes (set tracking.yolo.enabled: true)
+# ultralytics>=8.0

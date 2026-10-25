@@ -1,0 +1,172 @@
+# ─────────────────────────────────────────────────────────────
+#  REDLINE — "neural overdrive" config
+#  Every look in the edit is controlled from here. Tweak, re-run.
+#  Durations are in SECONDS so the same config works at 30 or 60 fps.
+# ─────────────────────────────────────────────────────────────
+
+seed: 7                 # same seed = same "random" edit every run
+
+video:
+  max_width: null       # e.g. 720 to render faster. null = keep original
+  start: 0.0            # seconds — trim start
+  duration: null        # seconds — null = whole video
+
+audio:
+  enabled: true
+  external: null        # or path to a separate .wav/.mp3 to sync to
+  onset_strength: 1.4   # higher = only bigger hits count
+  min_hit_gap: 0.22     # seconds — ignore hits closer than this (calmer)
+
+# Neon palette (hex, RGB). Flashes, trails, accents rotate through these on each hit.
+palette:
+  - "#FF1E8C"           # hot magenta
+  - "#00F0FF"           # electric cyan
+  - "#C6FF00"           # acid lime
+  - "#FFE600"           # warning yellow
+  - "#8A3CFF"           # ultraviolet
+  - "#FF3B30"           # signal red
+
+# ── 1. THE EDIT ──────────────────────────────────────────────
+edit:
+  enabled: true
+  dilation:             # the slow-mo "overdrive" moments
+    enabled: true
+    top_hits: 0.25      # only the loudest 25% of hits can trigger it
+    cooldown: 6.0       # seconds between dilations (keeps them special)
+    length: [1.0, 1.8]  # seconds of slowed time
+    speed: 0.3          # picture speed while dilated (0.3 = 30%)
+  stutter_chance: 0.12
+  stutter_len: [2, 4]   # frames
+  stutter_repeats: [2, 3]
+  freeze_chance: 0.06
+  freeze_len: [0.06, 0.15]
+  reverse_chance: 0.0
+  reverse_len: [0.08, 0.16]
+
+# ── 2. OVERDRIVE LAYER ───────────────────────────────────────
+overdrive:
+  trails:               # color-shifted afterimages of anything moving
+    echoes: 6           # how many ghost copies
+    spacing: 3          # source frames between each ghost
+    threshold: 18       # pixel difference that counts as "moved"
+    opacity: 0.85
+    on_hits: 0.35       # faint ghost pulse on normal hits (0 = only during dilation)
+  edge_glow:            # neon outlines on subjects
+    low: 60
+    high: 140
+    blur: 4
+    intensity: 0.9
+    in_dilation: 1.0
+    on_hits: 0.5
+  grade:                # world desaturates + cools while time is slowed
+    tint: "#7FD8FF"
+    amount: 0.55
+
+# ── 3. TRACKING (what the boxes attach to) ───────────────────
+tracking:
+  features:
+    enabled: true
+    max_points: 70
+    quality: 0.02
+    min_distance: 30
+    refresh_every: 15
+  motion:
+    enabled: true
+    min_area: 1500
+    max_blobs: 5
+  yolo:                 # real people/objects — needs `pip install ultralytics`
+    enabled: false
+    model: yolov8n.pt
+    conf: 0.4
+    every: 2
+
+# ── 4. HUD OVERLAY ───────────────────────────────────────────
+hud:
+  color: "#E8F6FF"            # main HUD color (near-white, slightly cool)
+  accent: "#FF1E8C"           # overwritten each hit by the palette color
+  thickness: 1
+  font_scale: 0.38
+  font_path: null             # e.g. assets/fonts/your_mono_font.ttf (optional)
+
+  feature_box_size: [10, 28]
+  show_fraction: 0.16         # calmer: few boxes between hits...
+  beat_boost: 0.55            # ...a clean burst on hits
+  lifespan: [4, 10]           # frames at 30fps (auto-scaled for 60fps)
+  box_styles: [brackets, rect, brackets, cross]
+  label_chance: 0.3
+  label_types: [id, coords, conf, hex]
+
+  connect_lines: true
+  connect_dist: 160
+  max_lines: 14
+
+  corner_readout: true
+
+# ── 5. EFFECT STACK (applied top → bottom, toggle freely) ────
+effects:
+  - name: dilation_breathe    # slow push-in during slow-mo
+    enabled: true
+    zoom: 0.035
+
+  - name: duotone_slam        # 1–3 frames of flat two-tone poster look on some hits
+    enabled: true
+    chance: 0.18
+    length: 0.05
+
+  - name: neon_flash          # neon color flash on hits (screen blend)
+    enabled: true
+    strength: 0.3
+    decay: 0.09
+    snap_strength: 0.75       # big flash when time snaps back
+
+  - name: graphic_slam        # bold word on a color bar, on some hits
+    enabled: true
+    chance: 0.1
+    length: 0.18
+    words: [OVERCLOCK, SYNC//OK, REFLEX+, SIGNAL, HYPERFOCUS, NEURAL SPIKE, LINK UP, 0.3X]
+
+  - name: snap_shake          # punch + shake when time snaps back
+    enabled: true
+    pixels: 16
+    length: 0.12
+    zoom: 0.05
+
+  - name: rgb_split
+    enabled: true
+    offset: 1
+    beat_offset: 7
+    dilate_offset: 5
+
+  - name: glitch_slices
+    enabled: true
+    chance: 0.01
+    on_hits: 0.25
+    slices: [2, 5]
+    max_shift: 40
+
+  - name: pixelate
+    enabled: false
+    chance: 0.01
+    block: [6, 14]
+
+  - name: posterize
+    enabled: false
+    levels: 4
+
+  - name: scanlines
+    enabled: true
+    spacing: 3
+    darkness: 0.1
+
+  - name: grain
+    enabled: true
+    amount: 5
+
+  - name: vignette
+    enabled: true
+    strength: 0.35
+    dilate_extra: 0.35
+
+output:
+  crf: 18
+  keep_audio: true
